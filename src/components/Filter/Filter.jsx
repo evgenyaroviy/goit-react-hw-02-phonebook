@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { NotificationMessage } from "../NotificationMessage/NotificationMessage";
 
-export const Filter = ({ filter, contacts, filterContact }) => {
+export const Filter = ({ contacts: { filter, contacts }, onChangeFilter }) => {
     console.log(filter);
     console.log(contacts);
     return contacts.length !== 0 ?
@@ -10,8 +10,8 @@ export const Filter = ({ filter, contacts, filterContact }) => {
                 Find contacts by name
                 <input
                     type="text"
-                    // value={filter}
-                    onChange={filterContact} />
+                    value={filter}
+                    onChange={onChangeFilter} />
             </label>
         ) :
         (
@@ -20,7 +20,9 @@ export const Filter = ({ filter, contacts, filterContact }) => {
 }
 
 Filter.propTypes = {
-    filter: PropTypes.string.isRequired,
-    contacts: PropTypes.array.isRequired,
-    filterContact: PropTypes.func.isRequired,
+    contacts: PropTypes.shape({
+        filter: PropTypes.string.isRequired,
+        contacts: PropTypes.array.isRequired,
+    }).isRequired,
+    onChangeFilter: PropTypes.func.isRequired,
 };

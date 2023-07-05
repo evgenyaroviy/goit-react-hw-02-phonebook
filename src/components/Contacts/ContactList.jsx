@@ -3,7 +3,7 @@ import css from "./contacts.module.css";
 import { NotificationMessage } from "../NotificationMessage/NotificationMessage";
 
 
-const ContactList = ({ filteredContacts, delContact }) => {
+export const ContactList = ({ filteredContacts, delContact }) => {
     return (
         <>
             {filteredContacts.length !== 0 ? (
@@ -24,8 +24,6 @@ const ContactList = ({ filteredContacts, delContact }) => {
         </>
     );
 };
-
-export default ContactList;
 
 ContactList.propTypes = {
     filteredContacts: PropTypes.arrayOf(

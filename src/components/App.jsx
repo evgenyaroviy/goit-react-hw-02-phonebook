@@ -1,6 +1,6 @@
 import { Component } from "react";
-import ContactForm from "./Phonebook/ContactForm";
-import ContactList from "./Contacts/ContactList";
+import { ContactForm } from "./Phonebook/ContactForm";
+import { ContactList } from "./Contacts/ContactList";
 import { Filter } from "./Filter/Filter";
 import { NotificationMessage } from "./NotificationMessage/NotificationMessage";
 
@@ -12,7 +12,7 @@ export class App extends Component {
     filter: '',
   }
 
-  createContact = newContact => {
+  submitForm = newContact => {
     const { contacts } = this.state;
     this.setState({
       contacts: [...contacts, newContact],
@@ -20,7 +20,6 @@ export class App extends Component {
   };
 
   filterContact = e => {
-    console.log(e.target.value);
     this.setState({
       filter: e.target.value,
     });
@@ -35,13 +34,16 @@ export class App extends Component {
   render() {
     const { contacts, filter } = this.state;
     const filteredContacts = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase()));
-
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
     return (
       <div>
 
         <h1>Phonebook</h1>
-        <ContactForm contacts={contacts} createContact={this.createContact} />
+        <ContactForm
+          contacts={contacts}
+          onCreateContact={this.submitForm}
+        />
 
 
         <h2>Contacts</h2>

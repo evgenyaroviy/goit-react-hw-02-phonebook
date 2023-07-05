@@ -27,6 +27,17 @@ h2 {
 .button {
     width: 90px;
     height: 30px;
+    border: none;
+    border-radius: 2px;
+    background-color: rgb(205, 156, 252);
+}
+
+button:hover,
+button:focus {
+    color: white;
+    background-color: #f96e6e;
+    border: none;
+    border-radius: 2px;
 }
 
 .form {

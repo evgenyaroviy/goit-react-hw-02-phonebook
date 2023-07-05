@@ -4,7 +4,7 @@ import { Component } from "react";
 import { nanoid } from 'nanoid';
 
 
-class ContactForm extends Component {
+export class ContactForm extends Component {
     state = {
         name: '',
         number: ''
@@ -32,7 +32,7 @@ class ContactForm extends Component {
             name,
             number,
         };
-        this.props.createContact(newContact);
+        this.props.onCreateContact(newContact);
         this.setState({
             name: '',
             number: ''
@@ -40,11 +40,11 @@ class ContactForm extends Component {
     }
 
 
-    handleChange = ({ target: { name, value } }) => {
+    handleChange = e => {
         this.setState({
-            [name]: value,
+            [e.target.name]: e.target.value,
         });
-    }
+    };
 
     render() {
         return (
@@ -57,8 +57,8 @@ class ContactForm extends Component {
                             pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                             required
-                            onChange={this.handleChange}
                             value={this.state.name}
+                            onChange={this.handleChange}
                         />
                     </label>
                     <label> Number
@@ -68,20 +68,20 @@ class ContactForm extends Component {
                             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
                             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                             required
-                            onChange={this.handleChange}
                             value={this.state.number}
+                            onChange={this.handleChange}
                         />
                     </label>
-                    <button type="submit" className={css.button}>Add contact</button>
+                    <button className={css.button}>Add contact</button>
                 </form>
             </div>
         )
     }
 
 }
-export default ContactForm;
+
 
 ContactForm.propTypes = {
     contacts: PropTypes.array.isRequired,
-    createContact: PropTypes.func.isRequired,
+    onCreateContact: PropTypes.func.isRequired,
 };
