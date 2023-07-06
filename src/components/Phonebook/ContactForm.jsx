@@ -18,7 +18,6 @@ export class ContactForm extends Component {
         this.props.contacts.forEach(contact => {
             if (contact.name === name) {
                 contactExists = true;
-                return;
             }
         });
 
